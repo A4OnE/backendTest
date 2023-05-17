@@ -1,9 +1,9 @@
 import { AppDataSource } from '../data-source'
 import { NextFunction, Request, Response } from "express"
-import { Brand} from "../entity/Brand"
+import { Dealer} from "../entity/Brand"
 import AppError from '../Utils/AppError';
 
-const BrandRepo = AppDataSource.getRepository(Brand);
+const BrandRepo = AppDataSource.getRepository(Dealer);
 export const getBrandHandler = async (
     req: Request,
     res: Response,
@@ -35,7 +35,6 @@ export const getBrandHandler = async (
   )=>{
     try {
         console.log(req.body,req.file);
-        req.body.image=req.file.filename;
         await BrandRepo.save(req.body).then(result=>{
             res.status(200).json({
                 message: "brand has been added",
@@ -67,7 +66,6 @@ export const getBrandHandler = async (
         if(!Brand){
             return next(new AppError(404,"Brand with this id not found" ));
         }
-        req.body.image = req.file ? req.file.filename : Brand.image;
 
 
 console.log(req.body)

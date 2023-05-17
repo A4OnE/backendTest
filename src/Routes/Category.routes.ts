@@ -1,6 +1,8 @@
 import {Router} from 'express'
 import {getCategory,postCategoryHandler,deleteCategoryHandler,patchCategoryHandler} from '../controller/Category.controller';
-
+import {upload} from '../Utils/UploadFile';
+import{CategorySchema} from '../Schema/Category.schema'
+import{validate} from '../ValidationFunctions/Product.validate'
 const router = Router();
 
 /**
@@ -15,7 +17,10 @@ const router = Router();
  *         properties: 
  *           Category_name:
  *             type: string
- *             description: this is for name of the category
+ *             description: this is for category name
+ *           image:
+ *             type: file
+ *             description: this is for image
  */
 
 /**
@@ -84,11 +89,11 @@ const router = Router();
 router
 .route('/')
 .get(getCategory)
-.post(postCategoryHandler);
+.post(upload.single('image'),validate(CategorySchema),postCategoryHandler);
 
 
 router.route('/:id')
-.patch(patchCategoryHandler)
+.patch(upload.single('image'),patchCategoryHandler)
 .delete(deleteCategoryHandler);
 
 

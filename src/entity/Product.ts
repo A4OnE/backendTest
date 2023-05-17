@@ -1,5 +1,5 @@
-import {Entity,PrimaryGeneratedColumn,Column,CreateDateColumn, ManyToOne, OneToMany} from 'typeorm';
-import { Brand } from './Brand';
+import {Entity,PrimaryGeneratedColumn,Column,CreateDateColumn, ManyToOne, OneToMany, ManyToMany, JoinTable} from 'typeorm';
+import { Dealer } from './Brand';
 import { Category } from './Category';
 import { Sales } from './Sales';
 
@@ -8,32 +8,42 @@ export class Product{
 
     @PrimaryGeneratedColumn('uuid')
     id:string;
-
     
     @Column()
     product_name:string
 
-    @ManyToOne(()=>Category,(category)=>category.product,{
-        eager:true
-    })
-    product_category:Category
+    // @ManyToOne(()=>Category,(category)=>category.product,{
+    //     eager:true
+    // })
+    @Column()
+    product_category:string 
 
-    @ManyToOne(()=>Brand,(brand)=>brand.product,{eager:true})
-    product_brand:Brand
+    @ManyToMany(()=>Dealer)
+    @JoinTable()
+    dealers:Dealer[]
 
     @Column()
-    product_quantity:string
+    MFDCompany:string
 
     @Column()
-    desc:string
-
-    @Column({
-        nullable:true
-    })
-    price:string
+    MFDDate:string
 
     @Column()
-    image:string
+    Exp_Date:string
+
+    @Column()
+    Discount:string
+
+    @Column()
+    Drug_desc:string
+
+    // @Column({
+    //     nullable:true
+    // })
+    // price:string
+
+    // @Column()
+    // image:string
 
     @Column({
         type:'jsonb',
@@ -41,7 +51,7 @@ export class Product{
         default:() => "'[]'",
         nullable:true,
     })
-    priceandunit:Array<{price:string,unit:string}>
+    priceAndQuantity:Array<{costPrice:string,Quantity:string,salesPrice:string}>
 
     @CreateDateColumn()
     createdAt:Date

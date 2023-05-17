@@ -1,2 +1,2 @@
 require('dotenv').config();
-export const port=process.env.PORT || 4002;
+export const port=process.env.PORT || 4004;

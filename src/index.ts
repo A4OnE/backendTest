@@ -9,7 +9,7 @@ import AppError from "./Utils/AppError"
 import * as cors from 'cors'
 import * as morgan from 'morgan'
 // routes import 
-import BrandRoute from './Routes/Brand.routes';
+import DealerRoute from './Routes/Dealer.routes';
 import CustomerRoute from './Routes/Customer.routes';
 import PaymentRoute from './Routes/Payment.routes';
 
@@ -31,13 +31,13 @@ const swaggerOptions={
     definition:{
        openapi: '3.0.0',
        info:{
-           title:"Dream salon backend",
+           title:"Pharmacy management system",
            version:"15",
            description:"Main website",
            contact:{
                name:'kisan mahat'
            },
-           servers:[4002]
+           servers:[4004]
        }
     },
     apis:["./routes/*.ts",`${__dirname}/routes/*.routes.ts`,]
@@ -53,7 +53,7 @@ app.use('/doc',swaggerUiExpress.serve,swaggerUiExpress.setup(swaggerDocs));
         })
     })
 
-    app.use('/brand',BrandRoute);
+    app.use('/Dealer',DealerRoute);
     app.use('/category',CategoryRoute);
     app.use('/customer',CustomerRoute);
     app.use('/payment',PaymentRoute);
@@ -78,7 +78,7 @@ app.use('/doc',swaggerUiExpress.serve,swaggerUiExpress.setup(swaggerDocs));
           res.status(error.statusCode).json({
             status: error.status,
             message: error.message,
-          });
+          }); 
         }
       );
 

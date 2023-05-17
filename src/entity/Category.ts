@@ -10,11 +10,14 @@ export class Category{
     @Column()
     Category_name:string
 
-    @OneToMany(()=>Product,(product)=>product.product_category,{
-        cascade:true,
-        onDelete:'CASCADE',onUpdate:'CASCADE'
-    })
-    product:Product[]
+    @Column()
+    image:string
+    
+    // @OneToMany(()=>Product,(product)=>product.product_category,{
+    //     cascade:true,
+    //     onDelete:'CASCADE',onUpdate:'CASCADE'
+    // })
+    // product:Product[]
 
     @CreateDateColumn()
     createdAt:Date

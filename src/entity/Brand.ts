@@ -1,23 +1,22 @@
-import {Entity,PrimaryGeneratedColumn,Column,CreateDateColumn, OneToMany} from 'typeorm';
+import {Entity,PrimaryGeneratedColumn,Column,CreateDateColumn, ManyToMany} from 'typeorm';
 import { Product } from './Product';
 
 @Entity()
-export class Brand{
+export class Dealer{
 
     @PrimaryGeneratedColumn('uuid')
     id:string
 
     @Column()
-    Brand_name:string
+    dealer_name:string
 
     @Column()
-    image:string
+    dealer_contact:string
 
-    @OneToMany(()=>Product,(product)=>product.product_brand,{
-        cascade:true,
-        onDelete:'CASCADE',onUpdate:'CASCADE'
-    })
-    product:Product[]
+    // @ManyToMany(()=>Product,(product)=>product.product_dealer,{
+   
+    // })
+    // product:Product[]
 
     @CreateDateColumn()
     createdAt:Date

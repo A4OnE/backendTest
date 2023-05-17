@@ -1,6 +1,6 @@
 
 import {Router} from 'express';
-import { getBrandHandler,postBrandHandler,deleteBrand,updateBrandHandler } from '../controller/Brand.controller';
+import { getBrandHandler,postBrandHandler,deleteBrand,updateBrandHandler } from '../controller/Dealer.controller';
 import {upload} from '../Utils/UploadFile'
 const router = Router();
 // router.use(deserializeUser, requireUser);

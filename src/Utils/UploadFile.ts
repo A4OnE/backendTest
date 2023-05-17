@@ -6,8 +6,10 @@ const storage = multer.diskStorage({
         cb(null, `src/Public`);
     },
     filename: function (req:Request, file:Express.Multer.File, cb) {
-        console.log(file.originalname)
-        cb(null ,file.originalname );
+        console.log(file)
+       let str = file.originalname.split(" ").join("") ;
+       console.log(str)
+        cb(null ,str );
     }
 });
 

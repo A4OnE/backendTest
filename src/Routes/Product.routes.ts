@@ -1,5 +1,7 @@
 import {Router} from 'express';
-import {upload} from '../Utils/UploadFile'
+import {upload} from '../Utils/UploadFile';
+import {validate} from '../ValidationFunctions/Product.validate';
+import {ProductSchema} from '../Schema/Product.schema'
 import {deleteProductHandler, getProductHandler, getSingleProductHandler, postProductHandler, updateProductHandler} from '../controller/Product.controlller'
 const router =Router();
 
@@ -10,9 +12,6 @@ const router =Router();
  *   schemas:
  *     productDto:
  *         type: object
- *         required:
- *           - product_name
- *           - image
  *         properties: 
  *           product_name:
  *             type: string
@@ -119,11 +118,11 @@ const router =Router();
 router
 .route('/')
 .get(getProductHandler)
-.post(upload.single('image'),postProductHandler)
+.post(postProductHandler)
 .delete()
 
 router.route('/:id')
 .get(getSingleProductHandler)
-.patch(upload.single('image'),updateProductHandler)
+.patch(updateProductHandler)
 .delete(deleteProductHandler)
 export default router;
