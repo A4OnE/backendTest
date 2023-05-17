@@ -1,7 +1,7 @@
 import {Router} from 'express';
 import {upload} from '../Utils/UploadFile';
 import {validate} from '../ValidationFunctions/Product.validate';
-import {ProductSchema} from '../Schema/Product.schema'
+// import {ProductSchema} from '../Schema/Product.schema'
 import {deleteProductHandler, getProductHandler, getSingleProductHandler, postProductHandler, updateProductHandler} from '../controller/Product.controlller'
 const router =Router();
 

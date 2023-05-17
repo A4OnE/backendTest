@@ -1,8 +1,8 @@
 import {Router} from 'express'
 import {getCategory,postCategoryHandler,deleteCategoryHandler,patchCategoryHandler} from '../controller/Category.controller';
 import {upload} from '../Utils/UploadFile';
-import{CategorySchema} from '../Schema/Category.schema'
-import{validate} from '../ValidationFunctions/Product.validate'
+// import{CategorySchema} from '../Schema/Category.schema'
+// import{validate} from '../ValidationFunctions/Product.validate'
 const router = Router();
 
 /**
@@ -89,7 +89,9 @@ const router = Router();
 router
 .route('/')
 .get(getCategory)
-.post(upload.single('image'),validate(CategorySchema),postCategoryHandler);
+.post(upload.single('image')
+// validate(CategorySchema)
+,postCategoryHandler);
 
 
 router.route('/:id')
